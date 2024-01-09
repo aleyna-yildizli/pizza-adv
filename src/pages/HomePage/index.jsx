@@ -7,7 +7,7 @@ export default function HomePage () {
        <div className='bgMainDiv'>
         <div className='homePageBody'>
             <p className="description">KOD ACIKTIRIR PİZZA, DOYURUR</p>
-            <Button text="ACIKTIM" to="/pizza" style={{ borderRadius: 50, top: 0 }}  />
+            <Button id="order-pizza" text="ACIKTIM" to="/pizza" style={{ borderRadius: 50, top: 0 }}  />
         </div>
        </div>
     )
