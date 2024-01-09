@@ -1,13 +1,16 @@
 import React from 'react';
 import "./style.css";
+import { Link } from 'react-router-dom';
 
 const Button = (props) => {
-  const { text, onClick } = props;
+  const { text, style, to } = props;
 
   return (
-    <button className='buttonMainDiv' onClick={onClick}>
+   <Link to={to}>
+    <button className='buttonMainDiv'  style={style}>
       {text}
-    </button>
+     </button>
+    </Link>
   );
 };
 

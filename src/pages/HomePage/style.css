@@ -7,3 +7,25 @@
     background-repeat: no-repeat;
     overflow: hidden;
   }
+
+ .homePageBody {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+  }
+
+  .description {
+    width: 693.12px;
+    height: 195px;
+    top: 35px;
+    left: -53.22px;
+    font-size: 86px;
+    font-weight: 300;
+    line-height: 92px;
+    letter-spacing: 1.5px;
+    text-align: center;
+    color: #fff;
+    margin-top: 30px;
+    margin-bottom: 10px;;
+  }

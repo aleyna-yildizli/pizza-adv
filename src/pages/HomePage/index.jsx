@@ -2,14 +2,13 @@ import React from 'react'
 import Button from '../../components/Button'
 import "./style.css";
 
-export default function HomePage (){
-    const handleOnClick = () => { 
-         alert("Woo!")
-    }
-
+export default function HomePage () {
     return (
        <div className='bgMainDiv'>
-        <Button text="ACIKTIM" onClick={handleOnClick} />
+        <div className='homePageBody'>
+            <p className="description">KOD ACIKTIRIR PİZZA, DOYURUR</p>
+            <Button text="ACIKTIM" to="/pizza" style={{ borderRadius: 50, top: 0 }}  />
+        </div>
        </div>
     )
 }
