@@ -1,0 +1,9 @@
+.bgMainDiv {
+    width: 100vw;
+    height: calc(100vh - 207px);
+    background-image: url("../../images/homepage-background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }

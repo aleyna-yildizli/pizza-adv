@@ -1,10 +1,10 @@
 import React from 'react'
 
-export default function HomePage (){
+export default function ResultPage (){
 
     return (
         <p>
-        Home Page
+           Result Page
         </p>
     )
 }
