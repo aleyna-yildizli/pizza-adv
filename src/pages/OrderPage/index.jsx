@@ -45,7 +45,7 @@ export default function OrderPage (){
       
         if (name === "ingredient") {//Ek malzeme kontrolü
           if (!checked) {
-            ingredients = ingredients.filter((ing) => ing !== value);//Seçmekten vazgeçti ise sil
+            ingredients = ingredients.filter((ing) => ing !== value);//Seçmekten vazgeçti ise sil/seçimi kaldır
           } else if (ingredients.length >= 10) {
             return;//Hali hazırda 10'dan fazla seçili ise bir işlem yapma
           } else {
@@ -56,6 +56,7 @@ export default function OrderPage (){
         setFormData({ ...formData, [name]: value, ingredients });
       }
 
+      //parayı formatlı gösterme ve sonuna tl simgesi koyma => 25.00₺ gibi
       const formatAsCurrency = (amount) => {
         const formattedAmount = amount.toLocaleString('tr-TR', {
             style: 'decimal',
@@ -63,12 +64,13 @@ export default function OrderPage (){
             maximumFractionDigits: 2
           });
         
-          return `${formattedAmount}₺`;
+          return `${formattedAmount}₺`; // formatlanan tutarın sonuna TL simgesi ekleme
       }
 
+      //Ek malzemelerin toplam tutar hesabı
       const calculateIngredientPrice = () => {
-        const ingredientTotal = formData?.ingredients?.length ?? 0;
-        const totalPrice = 5 * ingredientTotal;
+        const ingredientTotal = formData.ingredients.length; //ekstra malzeme sayıs
+        const totalPrice = 5 * ingredientTotal; // ekstra malzeme toplam tutarı
 
         const formattedTotalPrice = formatAsCurrency(totalPrice);
 
@@ -76,15 +78,16 @@ export default function OrderPage (){
 
       }
 
+      //toplam sipariş tutarı
       const calculateTotalPrice = () => {
-        const totalIngredients = formData?.ingredients?.length ?? 0;
-        const totalIngredientsPrice =  totalIngredients * 5;
+        const totalIngredientsCounts = formData.ingredients.length;//ekstra malzeme sayıs
+        const totalIngredientsPrice =  totalIngredientsCounts * 5;// ekstra malzeme toplam tutarı
 
-        const pizzaPrice = 85.5 * count;
+        const pizzaPrice = 85.5 * count;// pizza adeti * pizza fiyatı
 
         const totalPrice = pizzaPrice + totalIngredientsPrice;
 
-        const formattedTotalPrice = formatAsCurrency(totalPrice);
+        const formattedTotalPrice = formatAsCurrency(totalPrice); // parayı formatlı göster lira sembolınü koy
 
         return formattedTotalPrice;
       }
@@ -98,8 +101,6 @@ export default function OrderPage (){
         console.log("Hamur Seçimi:", formData.hamur);
         console.log("Boyut:", sizeOptions[formData.size]);
         console.log("Toplam Tutar:", calculateTotalPrice());
-
-        console.log("PAYLOAD:", JSON.stringify(formData));
       }
 
       useEffect(() => {
