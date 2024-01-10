@@ -7,9 +7,9 @@ const Header = () => {
   const location = useLocation();
   
     if (location.pathname === '/pizza') {
-     show==false && setShow(true);
+     show===false && setShow(true);
     } else {
-     show==true && setShow(false);
+     show===true && setShow(false);
     }
  
 

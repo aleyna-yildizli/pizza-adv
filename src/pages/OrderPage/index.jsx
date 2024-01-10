@@ -56,7 +56,7 @@ export default function OrderPage (){
         setFormData({ ...formData, [name]: value, ingredients });
       }
 
-      //parayı formatlı gösterme ve sonuna tl simgesi koyma => 25.00₺ gibi
+      //Para birimini 25.00₺ formatına göre düzenleyen fonksiyon.
       const formatAsCurrency = (amount) => {
         const formattedAmount = amount.toLocaleString('tr-TR', {
             style: 'decimal',
@@ -67,9 +67,9 @@ export default function OrderPage (){
           return `${formattedAmount}₺`; // formatlanan tutarın sonuna TL simgesi ekleme
       }
 
-      //Ek malzemelerin toplam tutar hesabı
+      //Ekstra malzemelerin toplam tutarını hesaplıyor.
       const calculateIngredientPrice = () => {
-        const ingredientTotal = formData.ingredients.length; //ekstra malzeme sayıs
+        const ingredientTotal = formData.ingredients.length; //ekstra malzeme sayısı
         const totalPrice = 5 * ingredientTotal; // ekstra malzeme toplam tutarı
 
         const formattedTotalPrice = formatAsCurrency(totalPrice);
@@ -78,16 +78,16 @@ export default function OrderPage (){
 
       }
 
-      //toplam sipariş tutarı
+      //Tüm siparişin toplam tutarını hesaplıyor.
       const calculateTotalPrice = () => {
-        const totalIngredientsCounts = formData.ingredients.length;//ekstra malzeme sayıs
+        const totalIngredientsCounts = formData.ingredients.length;//ekstra malzeme sayısı
         const totalIngredientsPrice =  totalIngredientsCounts * 5;// ekstra malzeme toplam tutarı
 
         const pizzaPrice = 85.5 * count;// pizza adeti * pizza fiyatı
 
         const totalPrice = pizzaPrice + totalIngredientsPrice;
 
-        const formattedTotalPrice = formatAsCurrency(totalPrice); // parayı formatlı göster lira sembolınü koy
+        const formattedTotalPrice = formatAsCurrency(totalPrice); // parayı formatlı göster lira sembolınü koy.
 
         return formattedTotalPrice;
       }
