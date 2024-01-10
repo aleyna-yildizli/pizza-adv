@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./style.css";
 import { Card, Form, FormGroup, Label, Input } from 'reactstrap';
 import Button from '../../components/Button';
+import axios from 'axios';
 
 const initialForm = {
  size: "",
  hamur: "",
  ingredients: [],
- message: ""
+ message: "",
+ name: ""
 }
 
 const ingredientOptions = [
@@ -26,6 +28,12 @@ const ingredientOptions = [
     'Ananas',
     'Kabak',
   ];
+
+  const sizeOptions = {
+    kucukBoy: "Küçük Boy",
+    ortaBoy: "Orta Boy",
+    buyukBoy: "Büyük Boy"
+  }
 
 export default function OrderPage (){
     const [formData, setFormData] = useState(initialForm);
@@ -81,6 +89,33 @@ export default function OrderPage (){
         return formattedTotalPrice;
       }
 
+      const writeOrderSummary = () => {
+        console.log("SİPARİŞ ÖZETİ");
+        console.log("Müşteri İsmi:", formData.name);
+        console.log("Pizza Adı:", "Position Absolute Acı Pizza");
+        console.log("Pizza Sayısı:", count);
+        console.log("Seçilen Malzemeler:", formData.ingredients.join(', '));
+        console.log("Hamur Seçimi:", formData.hamur);
+        console.log("Boyut:", sizeOptions[formData.size]);
+        console.log("Toplam Tutar:", calculateTotalPrice());
+
+        console.log("PAYLOAD:", JSON.stringify(formData));
+      }
+
+      useEffect(() => {
+        axios.get('https://reqres.in/api/users')
+          .then(response => {
+            const rastgeleNumara = () => Math.floor(Math.random() * 6);
+            const index = rastgeleNumara();
+            const firstUserName = response.data.data[index].first_name ?? "Aleyna";
+
+            setFormData({ ...formData, name: firstUserName });
+          })
+          .catch(error => {
+            console.error('Error fetching data: ', error);
+          });
+      }, []);
+
     return (
         <div className='orderPageMainDiv'>
             <div className='content'>
@@ -98,10 +133,10 @@ export default function OrderPage (){
              Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş mayalı buğday bazlı hamurdan oluşan İtalyan kökenli lezzetli bir yemektir. . Küçük bir pizzaya bazen pizzetta denir.
             </p>
             <div className='formSection'>
-            <Form onSubmit={onsubmit}>
+            <Form onSubmit={onsubmit} id="pizza-form">
 
             <div className='sizeSelection'>
-            <FormGroup>
+            <FormGroup id="size-radio">
             <p className='sizeSelectionTitle'>Boyut seç *</p>
             <Input
               id="kucukBoy"
@@ -170,10 +205,24 @@ export default function OrderPage (){
            ))}
              </FormGroup>
 
+            <FormGroup className='orderMessage-Name'>
+            <Label for="name" className='orderMessageTitle'>İsim</Label><br />
+            <Input
+               id="name-input"
+               name="name"
+               placeholder="İsminizi Giriniz!"
+               type="input"
+               className="customerMessage"
+               value={formData.name}
+               onChange={handleChange}
+               size={100}
+            />
+          </FormGroup>
+
          <FormGroup className='orderMessage'>
             <Label for="message" className='orderMessageTitle'>Sipariş Notu</Label><br />
             <Input
-               id="message"
+               id="malzemeler-checkbox"
                name="message"
                placeholder="Siparişine eklemek istediğin bir not var mı?"
                type="input"
@@ -207,7 +256,7 @@ export default function OrderPage (){
                   <div className="summaryValueGroupValue">{calculateTotalPrice()}</div>
                 </div>
               </div>
-              <Button id="order-button" text="SİPARİŞ VER" to="/result" style={{ borderRadius: 6, height: "66px", width: "100%" }}  />
+              <Button onClick={writeOrderSummary} id="order-button" text="SİPARİŞ VER" to="/result" style={{ borderRadius: 6, height: "66px", width: "100%" }}  />
             </div>
           </div>
             </Form>
