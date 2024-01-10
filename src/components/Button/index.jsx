@@ -6,7 +6,7 @@ const Button = (props) => {
   const { text, style, to, id, onClick } = props;
 
   const handleOnClick = (event) => {
-    onClick?.();
+    onClick && onClick(); //Böyle bir prob gelirse çalıştır
   }
 
   return (

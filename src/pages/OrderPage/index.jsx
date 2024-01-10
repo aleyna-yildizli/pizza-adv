@@ -37,7 +37,7 @@ const ingredientOptions = [
 
 export default function OrderPage (){
     const [formData, setFormData] = useState(initialForm);
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(1); //pizza sayısını tut
 
     function handleChange(event) {
         const { name, value, checked } = event.target;
@@ -235,7 +235,7 @@ export default function OrderPage (){
           </FormGroup>
           <div className="orderConfirm">
             <div className="orderCounter">
-              <button className="orderCounterButton" type="button" onClick={() => setCount((count) => count - 1)}>
+              <button className="orderCounterButton" type="button" onClick={() => setCount((count) => count > 1 ? count - 1 : 1)}>
                 -
               </button>
               <button disabled className="totalCounter orderCounterButton">
