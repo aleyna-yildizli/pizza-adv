@@ -6,6 +6,7 @@
     background-position: center;
     background-repeat: no-repeat;
     overflow: hidden;
+    margin-top: 207px;
   }
 
  .homePageBody {
@@ -15,7 +16,7 @@
    align-items: center;
   }
 
-  .description {
+  .homePageBodyDescription {
     width: 693.12px;
     height: 195px;
     top: 35px;
@@ -26,6 +27,6 @@
     letter-spacing: 1.5px;
     text-align: center;
     color: #fff;
-    margin-top: 30px;
+    margin-top: 0;
     margin-bottom: 10px;;
   }
