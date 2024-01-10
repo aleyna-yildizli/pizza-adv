@@ -55,3 +55,17 @@
     text-align: center;
     color: #FFFFFF;
 }
+
+.cardOne {
+    font-family: Barlow;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 25px;
+    letter-spacing: 0em;
+    text-align: left; 
+    display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+

@@ -11,6 +11,11 @@ export default function ResultPage (props){
            <p className='resultPageMainDivTitle'>lezzetin yolda</p>
            <p className='resultPageMainDivDescription'>SİPARİŞ ALINDI</p>
            <p className='resultPageMainDivPizzaText'>Position Absolute Acı Pizza </p>
+           <div className='cardOne'>
+           <p className='resultPageMainDivPizzaBoyut'>Boyut: {formData.size} </p>
+           <p className='resultPageMainDivPizzaHamur'>Hamur: {formData.hamur} </p>
+           <p className='resultPageMainDivPizzaEk'>Ek Malzemeler:{ingredients} </p>
+           </div>
            </div>
         </div>
     )
