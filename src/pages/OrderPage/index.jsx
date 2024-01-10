@@ -4,14 +4,6 @@ import { Card, Form, FormGroup, Label, Input } from 'reactstrap';
 import Button from '../../components/Button';
 import axios from 'axios';
 
-const initialForm = {
- size: "",
- hamur: "",
- ingredients: [],
- message: "",
- name: ""
-}
-
 const ingredientOptions = [
     'Pepporini',
     'Sosis',
@@ -35,9 +27,10 @@ const ingredientOptions = [
     buyukBoy: "Büyük Boy"
   }
 
-export default function OrderPage (){
-    const [formData, setFormData] = useState(initialForm);
-    const [count, setCount] = useState(1); //pizza sayısını tut
+export default function OrderPage (props){
+   const {formDataOnChange, formData } = props;
+
+  const [count, setCount] = useState(1); //pizza sayısını tut
 
     function handleChange(event) {
         const { name, value, checked } = event.target;
@@ -53,7 +46,8 @@ export default function OrderPage (){
           }
         }
       
-        setFormData({ ...formData, [name]: value, ingredients });
+        const data = { ...formData, [name]: value, ingredients };
+        formDataOnChange(data);
       }
 
       //Para birimini 25.00₺ formatına göre düzenleyen fonksiyon.
@@ -119,7 +113,8 @@ export default function OrderPage (){
             const index = rastgeleNumara();
             const firstUserName = response.data.data[index].first_name ?? "Aleyna";
 
-            setFormData({ ...formData, name: firstUserName });
+            const data = { ...formData, name: firstUserName };
+            formDataOnChange?.(data);
           })
           .catch(error => {
             console.error('Error fetching data: ', error);
