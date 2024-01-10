@@ -6,8 +6,9 @@ export default function ResultPage (){
     return (
         <div className='resultPageMainDiv'>
            <div className='resultPageMainDivContent'>
-           <p className='resultPageMainDivTitle'>TEBRİKLER!</p>
-           <p className='resultPageMainDivDescription'>SİPARİŞİNİZ ALINDI!</p>
+           <p className='resultPageMainDivTitle'>lezzetin yolda</p>
+           <p className='resultPageMainDivDescription'>SİPARİŞ ALINDI</p>
+           <p className='resultPageMainDivPizzaText'>Position Absolute Acı Pizza</p>
            </div>
         </div>
     )
