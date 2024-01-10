@@ -221,6 +221,7 @@ export default function OrderPage (){
                value={formData.name}
                onChange={handleChange}
                size={100}
+               autocomplete="off"
             />
           </FormGroup>
 
@@ -235,6 +236,7 @@ export default function OrderPage (){
                value={formData.message}
                onChange={handleChange}
                size={100}
+               autocomplete="off"
             />
           </FormGroup>
           <div className="orderConfirm">
