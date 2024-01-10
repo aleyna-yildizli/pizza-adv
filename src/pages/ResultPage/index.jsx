@@ -14,7 +14,7 @@ export default function ResultPage (props){
            <div className='cardOne'>
            <p className='resultPageMainDivPizzaBoyut'>Boyut: {formData.size} </p>
            <p className='resultPageMainDivPizzaHamur'>Hamur: {formData.hamur} </p>
-           <p className='resultPageMainDivPizzaEk'>Ek Malzemeler:{ingredients} </p>
+           <p className='resultPageMainDivPizzaEk'>   Ek Malzemeler:{ingredients} </p>
            </div>
            </div>
         </div>

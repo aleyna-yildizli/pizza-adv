@@ -24,8 +24,7 @@ function App() {
   return (
     <Layout>
       <Switch>
-        
-         <Route path="/pizza">
+        <Route path="/pizza">
           <OrderPage formDataOnChange={formDataOnChange} formData={formData} />
         </Route>
         <Route path="/result">
