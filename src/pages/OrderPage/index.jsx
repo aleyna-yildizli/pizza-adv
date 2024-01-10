@@ -93,7 +93,14 @@ export default function OrderPage (){
       }
 
       const writeOrderSummary = () => {
-        console.log("SİPARİŞ ÖZETİ");
+        axios.post('https://reqres.in/api/users', formData)
+        .then(response => {
+            console.log('response', response);
+        })
+        .catch(error => {
+          console.error('Error fetching data: ', error);
+        });
+       /* console.log("SİPARİŞ ÖZETİ");
         console.log("Müşteri İsmi:", formData.name);
         console.log("Pizza Adı:", "Position Absolute Acı Pizza");
         console.log("Pizza Sayısı:", count);
@@ -101,6 +108,8 @@ export default function OrderPage (){
         console.log("Hamur Seçimi:", formData.hamur);
         console.log("Boyut:", sizeOptions[formData.size]);
         console.log("Toplam Tutar:", calculateTotalPrice());
+      
+      */
       }
 
       useEffect(() => {
@@ -116,6 +125,8 @@ export default function OrderPage (){
             console.error('Error fetching data: ', error);
           });
       }, []);
+
+   
 
     return (
         <div className='orderPageMainDiv'>
