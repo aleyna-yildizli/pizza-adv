@@ -138,7 +138,8 @@ export default function OrderPage (){
 
             <div className='sizeSelection'>
             <FormGroup id="size-radio">
-            <p className='sizeSelectionTitle'>Boyut seç *</p>
+            <p className='sizeSelectionTitle'>Boyut seç <span className='sizeSelectionRedTitle'>*</span></p>
+            <div className='sizeSelectionOption'>
             <Input
               id="kucukBoy"
               name="size"
@@ -148,7 +149,8 @@ export default function OrderPage (){
               checked={formData.size == "kucukBoy"}
             />
             <Label for="kucukBoy">Küçük</Label>
-            <br />
+            </div>
+            <div className='sizeSelectionOption'>
             <Input
               id="ortaBoy"
               name="size"
@@ -158,7 +160,8 @@ export default function OrderPage (){
               checked={formData.size == "ortaBoy"}
             />
             <Label for="ortaBoy">Orta</Label>
-            <br />
+            </div>
+            <div className='sizeSelectionOption'>
             <Input
               id="buyukBoy"
               name="size"
@@ -168,10 +171,11 @@ export default function OrderPage (){
               checked={formData.size == "buyukBoy"}
             />
             <Label for="buyukBoy">Büyük</Label>
+            </div>
             </FormGroup>
 
              <FormGroup>
-            <Label for="hamurSec" className='sizeSelectionTitle'>Hamur Seç *</Label> <br />
+            <Label for="hamurSec" className='sizeSelectionTitle'>Hamur Seç <span className='sizeSelectionRedTitle'>*</span></Label> <br />
             <Input
               id="hamur"
               name="hamur"

@@ -73,7 +73,9 @@ margin-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: start
+  align-items: start;
+  margin-top: 70px;
+  
 }
 
 .sizeSelectionTitle {
@@ -84,6 +86,15 @@ margin-top: 10px;
   letter-spacing: 0em;
   text-align: left;
   margin: 0;
+  margin-bottom: 15px;
+}
+
+.sizeSelectionRedTitle {
+  color: #D80027
+}
+
+.sizeSelectionOption {
+  margin-bottom: 10px;
 }
 
 .ingredientHeader {
