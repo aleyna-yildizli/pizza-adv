@@ -203,7 +203,7 @@ export default function OrderPage (){
                 name='ingredient'
                 value={ingredient}
                 checked={formData?.ingredients?.includes(ingredient)}
-                onChange={() => handleChange(event)}
+                onChange={handleChange}
               />
               {ingredient}
             </label>
