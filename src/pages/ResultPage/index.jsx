@@ -29,7 +29,7 @@ export default function ResultPage (props){
            </div>
            </div>
            <div className='resultPageCalculation'>
-           <Calculation formData={formData} count={count}></Calculation>
+           <Calculation formData={formData} count={count} style={{color:"white"}}></Calculation>
            </div>
            </div>
         </div>

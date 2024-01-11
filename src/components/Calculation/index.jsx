@@ -2,7 +2,7 @@ import React from 'react';
 import "./style.css";
 
 const Calculation = (props) => {
-  const { formData, count } = props;
+  const { formData, count, style} = props;
 
  //Ekstra malzemelerin toplam tutarını hesaplıyor.
   const calculateIngredientPrice = () => {
@@ -45,11 +45,11 @@ const calculateTotalPrice = () => {
   return (
     <div className="summaryCard">
     <p className='summaryCardTitle'>Sipariş Toplamı</p>
-    <div className="summaryValueGroup">
-      <div className="summaryValueGroupTitle">Seçimler</div>
+    <div className="summaryValueGroup" style={style}>
+      <div className="summaryValueGroupTitle ">Seçimler</div>
       <div className="summaryValueGroupValue">{calculateIngredientPrice()}</div>
     </div>
-    <div className="summaryValueGroup summaryValueGroup-red">
+    <div className="summaryValueGroup summaryValueGroup-red" style={style}>
       <div className="summaryValueGroupTitle">Toplam</div>
       <div className="summaryValueGroupValue">{calculateTotalPrice()}</div>
     </div>
