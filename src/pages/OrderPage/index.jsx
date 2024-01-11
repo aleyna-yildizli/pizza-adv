@@ -22,9 +22,9 @@ const ingredientOptions = [
   ];
 
   const sizeOptions = {
-    kucukBoy: "Küçük Boy",
-    ortaBoy: "Orta Boy",
-    buyukBoy: "Büyük Boy"
+    S: "S",
+    M: "M",
+    L: "L"
   }
 
 export default function OrderPage (props){
@@ -150,50 +150,53 @@ export default function OrderPage (props){
               id="kucukBoy"
               name="size"
               type="radio"
-              value={"kucukBoy"}
+              value={"S"}
               onChange={handleChange}
-              checked={formData.size == "kucukBoy"}
+              checked={formData.size == "S"}
             />
-            <Label for="kucukBoy">Küçük</Label>
+            <Label for="kucukBoy">S</Label>
             </div>
             <div className='sizeSelectionOption'>
             <Input
               id="ortaBoy"
               name="size"
               type="radio"
-              value={"ortaBoy"}
+              value={"M"}
               onChange={handleChange}
-              checked={formData.size == "ortaBoy"}
+              checked={formData.size == "M"}
             />
-            <Label for="ortaBoy">Orta</Label>
+            <Label for="ortaBoy">M</Label>
             </div>
             <div className='sizeSelectionOption'>
             <Input
               id="buyukBoy"
               name="size"
               type="radio"
-              value={"buyukBoy"}
+              value={"L"}
               onChange={handleChange}
-              checked={formData.size == "buyukBoy"}
+              checked={formData.size == "L"}
             />
-            <Label for="buyukBoy">Büyük</Label>
+            <Label for="buyukBoy">L</Label>
             </div>
             </FormGroup>
-
-             <FormGroup>
+            <FormGroup>
             <Label for="hamurSec" className='sizeSelectionTitle'>Hamur Seç <span className='sizeSelectionRedTitle'>*</span></Label> <br />
             <Input
               id="hamur"
               name="hamur"
+              placeholder="-Hamur Kalınlığı Seç-"
               type="select"
               value={formData.hamurSec}
               onChange={handleChange}
             >
-              <option>Normal</option>
+              <option disabled>-Hamur Kalınlığı Seç-</option>
+              <option>Süpper İnce</option>
               <option>İnce Kenar</option>
+              <option>Normal</option>
               <option>Kalın Kenar</option>
             </Input>
-             </FormGroup>
+             </FormGroup> 
+             
              </div>
 
              <FormGroup>
