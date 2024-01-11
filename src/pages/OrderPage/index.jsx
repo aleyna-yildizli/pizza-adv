@@ -35,9 +35,6 @@ export default function OrderPage (props){
    const [ingredientError, setIngredientError] = useState(false);
    let history = useHistory();
 
-
- 
-
     function handleChange(event) {
         const { name, value, checked } = event.target;
         let ingredients = formData?.ingredients || [];
@@ -57,24 +54,15 @@ export default function OrderPage (props){
       }
      
 
-      const writeOrderSummary = () => {
+      const postOrderToMockAPI = () => {
         axios.post('https://reqres.in/api/users', formData)
         .then(response => {
             console.log('response', response);
+            history.push("/result"); 
         })
         .catch(error => {
           console.error('Error fetching data: ', error);
         });
-       /* console.log("SİPARİŞ ÖZETİ");
-        console.log("Müşteri İsmi:", formData.name);
-        console.log("Pizza Adı:", "Position Absolute Acı Pizza");
-        console.log("Pizza Sayısı:", count);
-        console.log("Seçilen Malzemeler:", formData.ingredients.join(', '));
-        console.log("Hamur Seçimi:", formData.hamur);
-        console.log("Boyut:", sizeOptions[formData.size]);
-        console.log("Toplam Tutar:", calculateTotalPrice());
-      
-      */
       }
 
       useEffect(() => {
@@ -125,7 +113,7 @@ export default function OrderPage (props){
 
 
         if (!isError ) {
-          history.push("/result");
+          postOrderToMockAPI();
         } else {
           alert("hop, nereye!");
         }
@@ -275,7 +263,6 @@ export default function OrderPage (props){
             </div>
             <div className="orderSummary">
               <Calculation formData={formData} count={count}></Calculation>
-            {/* <Button onClick={writeOrderSummary} id="order-button" text="SİPARİŞ VER" to="/result" style={{ borderRadius: 6, height: "66px", width: "100%" }}  /> */}
               <Button id="order-button" className='orderPageSubmitButton' onClick={handleSubmitOnClick} color={"warning"}>SİPARİŞ VER</Button>
             </div>
           </div>
