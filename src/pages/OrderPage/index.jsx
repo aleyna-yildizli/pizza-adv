@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, } from 'react';
+import { useHistory } from 'react-router-dom';
 import "./style.css";
-import { Card, Form, FormGroup, Label, Input } from 'reactstrap';
-import Button from '../../components/Button';
+import { Card, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import axios from 'axios';
 import  Calculation from '../../components/Calculation';
 
@@ -30,6 +30,11 @@ const ingredientOptions = [
 
 export default function OrderPage (props){
    const {formDataOnChange, formData, count, countOnChange } = props;
+   const [sizeError, setSizeError] = useState(false);
+   const [hamurError, setHamurError] = useState(false);
+   const [ingredientError, setIngredientError] = useState(false);
+   let history = useHistory();
+
 
  
 
@@ -93,6 +98,41 @@ export default function OrderPage (props){
         countOnChange(value);
       }
    
+      const handleSubmitOnClick = () => {
+        let isError = false; 
+
+        if (formData.size)  {
+          setSizeError(false);
+        } else {
+          setSizeError(true);
+          isError = true;
+        }
+        
+        if (formData.hamur) {
+          setHamurError(false);
+        } else {
+          setHamurError(true);
+          isError = true;
+        }
+
+        if (formData.ingredients.length >= 4) {
+          setIngredientError(false);
+        } else {
+          setIngredientError(true);
+          isError = true;
+        }
+
+
+
+        if (!isError ) {
+          history.push("/result");
+        } else {
+          alert("hop, nereye!");
+        }
+      
+      }
+
+
 
     return (
         <div className='orderPageMainDiv'>
@@ -116,6 +156,7 @@ export default function OrderPage (props){
             <div className='sizeSelection'>
             <FormGroup id="size-radio">
             <p className='sizeSelectionTitle'>Boyut seç <span className='sizeSelectionRedTitle'>*</span></p>
+            {sizeError && <p className="orderPageErrorMessage">Lütfen Boyut Seçiniz!</p>}
             <div className='sizeSelectionOption'>
             <Input
               id="kucukBoy"
@@ -152,6 +193,7 @@ export default function OrderPage (props){
             </FormGroup>
             <FormGroup>
             <Label for="hamurSec" className='sizeSelectionTitle'>Hamur Seç <span className='sizeSelectionRedTitle'>*</span></Label> <br />
+            {hamurError && <p className="orderPageErrorMessage">Lütfen Hamur Kalınlığı Seçiniz!</p>}
             <Input
               id="hamur"
               name="hamur"
@@ -175,7 +217,7 @@ export default function OrderPage (props){
                 <p className='ingredientTitle'>Ek Malzemeler</p>
                 <p className='ingredientInfo'>En Fazla 10 malzeme seçebilirsiniz. 5₺</p>
             </div>
-           
+            {ingredientError && <p className="orderPageErrorMessage">Lütfen En Az 4 Ek Malzeme Seçiniz!</p>}
              {ingredientOptions.map((ingredient) => (
             <label className='ingredientOption'>
               <input
@@ -233,7 +275,8 @@ export default function OrderPage (props){
             </div>
             <div className="orderSummary">
               <Calculation formData={formData} count={count}></Calculation>
-              <Button onClick={writeOrderSummary} id="order-button" text="SİPARİŞ VER" to="/result" style={{ borderRadius: 6, height: "66px", width: "100%" }}  />
+            {/* <Button onClick={writeOrderSummary} id="order-button" text="SİPARİŞ VER" to="/result" style={{ borderRadius: 6, height: "66px", width: "100%" }}  /> */}
+              <Button id="order-button" className='orderPageSubmitButton' onClick={handleSubmitOnClick} color={"warning"}>SİPARİŞ VER</Button>
             </div>
           </div>
             </Form>

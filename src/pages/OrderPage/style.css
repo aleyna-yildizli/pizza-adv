@@ -188,3 +188,15 @@ text-align: left;
   color: black;
 }
 
+.orderPageErrorMessage {
+  color: red;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.orderPageSubmitButton {
+  background-color: #FDC913;
+  height: 56px;
+  width: 426px;
+  color: #292929;
+}
