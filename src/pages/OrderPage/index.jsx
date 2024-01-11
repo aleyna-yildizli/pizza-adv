@@ -3,6 +3,7 @@ import "./style.css";
 import { Card, Form, FormGroup, Label, Input } from 'reactstrap';
 import Button from '../../components/Button';
 import axios from 'axios';
+import  Calculation from '../../components/Calculation';
 
 const ingredientOptions = [
     'Pepporini',
@@ -28,9 +29,9 @@ const ingredientOptions = [
   }
 
 export default function OrderPage (props){
-   const {formDataOnChange, formData } = props;
+   const {formDataOnChange, formData, count, countOnChange } = props;
 
-  const [count, setCount] = useState(1); //pizza sayısını tut
+ 
 
     function handleChange(event) {
         const { name, value, checked } = event.target;
@@ -49,42 +50,7 @@ export default function OrderPage (props){
         const data = { ...formData, [name]: value, ingredients };
         formDataOnChange(data);
       }
-
-      //Para birimini 25.00₺ formatına göre düzenleyen fonksiyon.
-      const formatAsCurrency = (amount) => {
-        const formattedAmount = amount.toLocaleString('tr-TR', {
-            style: 'decimal',
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-          });
-        
-          return `${formattedAmount}₺`; // formatlanan tutarın sonuna TL simgesi ekleme
-      }
-
-      //Ekstra malzemelerin toplam tutarını hesaplıyor.
-      const calculateIngredientPrice = () => {
-        const ingredientTotal = formData.ingredients.length; //ekstra malzeme sayısı
-        const totalPrice = 5 * ingredientTotal; // ekstra malzeme toplam tutarı
-
-        const formattedTotalPrice = formatAsCurrency(totalPrice);
-
-        return formattedTotalPrice;
-
-      }
-
-      //Tüm siparişin toplam tutarını hesaplıyor.
-      const calculateTotalPrice = () => {
-        const totalIngredientsCounts = formData.ingredients.length;//ekstra malzeme sayısı
-        const totalIngredientsPrice =  totalIngredientsCounts * 5;// ekstra malzeme toplam tutarı
-
-        const pizzaPrice = 85.5 * count;// pizza adeti * pizza fiyatı
-
-        const totalPrice = pizzaPrice + totalIngredientsPrice;
-
-        const formattedTotalPrice = formatAsCurrency(totalPrice); // parayı formatlı göster lira sembolınü koy.
-
-        return formattedTotalPrice;
-      }
+     
 
       const writeOrderSummary = () => {
         axios.post('https://reqres.in/api/users', formData)
@@ -121,6 +87,11 @@ export default function OrderPage (props){
           });
       }, []);
 
+   
+
+      const handleCountChange = (value) =>  {
+        countOnChange(value);
+      }
    
 
     return (
@@ -189,9 +160,9 @@ export default function OrderPage (props){
               value={formData.hamurSec}
               onChange={handleChange}
             >
-              <option disabled>-Hamur Kalınlığı Seç-</option>
+              <option disabled value="" selected>-Hamur Kalınlığı Seç-</option>
               <option>Süpper İnce</option>
-              <option>İnce Kenar</option>
+              <option>İnce Kenar</option >
               <option>Normal</option>
               <option>Kalın Kenar</option>
             </Input>
@@ -250,28 +221,18 @@ export default function OrderPage (props){
           </FormGroup>
           <div className="orderConfirm">
             <div className="orderCounter">
-              <button className="orderCounterButton" type="button" onClick={() => setCount((count) => count > 1 ? count - 1 : 1)}>
+              <button className="orderCounterButton" type="button" onClick={() => handleCountChange(count > 1 ? count - 1 : 1)}>
                 -
               </button>
               <button disabled className="totalCounter orderCounterButton">
                 {count}
               </button>
-              <button className="orderCounterButton" type='button' onClick={() => setCount((count) => count + 1)}>
+              <button className="orderCounterButton" type='button' onClick={() => handleCountChange(count + 1)}>
                 +
               </button>
             </div>
             <div className="orderSummary">
-              <div className="summaryCard">
-                <p className='summaryCardTitle'>Sipariş Toplamı</p>
-                <div className="summaryValueGroup">
-                  <div className="summaryValueGroupTitle">Seçimler</div>
-                  <div className="summaryValueGroupValue">{calculateIngredientPrice()}</div>
-                </div>
-                <div className="summaryValueGroup summaryValueGroup-red">
-                  <div className="summaryValueGroupTitle">Toplam</div>
-                  <div className="summaryValueGroupValue">{calculateTotalPrice()}</div>
-                </div>
-              </div>
+              <Calculation formData={formData} count={count}></Calculation>
               <Button onClick={writeOrderSummary} id="order-button" text="SİPARİŞ VER" to="/result" style={{ borderRadius: 6, height: "66px", width: "100%" }}  />
             </div>
           </div>

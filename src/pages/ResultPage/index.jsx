@@ -1,8 +1,9 @@
 import React from 'react';
 import "./style.css";
+import Calculation from '../../components/Calculation';
 
 export default function ResultPage (props){
-    const { formData } = props;
+    const { formData, count } = props;
     const ingredients = formData.ingredients.join(', ');
 
     return (
@@ -11,10 +12,24 @@ export default function ResultPage (props){
            <p className='resultPageMainDivTitle'>lezzetin yolda</p>
            <p className='resultPageMainDivDescription'>SİPARİŞ ALINDI</p>
            <p className='resultPageMainDivPizzaText'>Position Absolute Acı Pizza </p>
-           <div className='cardOne'>
-           <p className='resultPageMainDivPizzaBoyut'>Boyut: {formData.size} </p>
-           <p className='resultPageMainDivPizzaHamur'>Hamur: {formData.hamur} </p>
-           <p className='resultPageMainDivPizzaEk'>   Ek Malzemeler:{ingredients} </p>
+           <div className='resultPageSectionOne'>
+           <div className='resultPageSectionOneWrapper'>
+           <div className='resultPageSelectionInfo'>
+           <p className='resultPageSelectionInfoText'>Boyut: </p>
+           <p className='resultPageSelectionInfoValue'>{formData.size} </p>
+           </div>
+           <div className='resultPageSelectionInfo'>
+           <p className='resultPageSelectionInfoText'>Hamur:</p>
+           <p className='resultPageSelectionInfoValue'>{formData.hamur} </p>
+           </div>
+           <div className='resultPageSelectionInfo'>
+           <p className='resultPageSelectionInfoText'>Ek Malzemeler:</p>
+           <p className='resultPageSelectionInfoValue'>{ingredients} </p>
+           </div>
+           </div>
+           </div>
+           <div className='resultPageCalculation'>
+           <Calculation formData={formData} count={count}></Calculation>
            </div>
            </div>
         </div>

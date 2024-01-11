@@ -16,19 +16,25 @@ const initialForm = {
 
 function App() {
  const [formData, setFormData] = useState(initialForm);
+ const [count, setCount] = useState(1);
 
  const formDataOnChange = (newData) => {
   setFormData(newData);
  }
 
+ const countOnChange = (value) => {
+  setCount(value);
+ }
+
+
   return (
     <Layout>
       <Switch>
         <Route path="/pizza">
-          <OrderPage formDataOnChange={formDataOnChange} formData={formData} />
+          <OrderPage formDataOnChange={formDataOnChange} formData={formData} countOnChange={countOnChange} count={count} />
         </Route>
         <Route path="/result">
-          <ResultPage formData={formData} />
+          <ResultPage formData={formData} count={count} />
         </Route>
         <Route path="/" component={HomePage}  />
       </Switch>
