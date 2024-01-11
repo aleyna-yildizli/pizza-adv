@@ -55,6 +55,7 @@ export default function OrderPage (props){
      
 
       const postOrderToMockAPI = () => {
+        formData.count = count;
         axios.post('https://reqres.in/api/users', formData)
         .then(response => {
             console.log('response', response);
