@@ -18,5 +18,15 @@ describe('Pizza Siparişi Testleri', () => {
                 .should('have.value', 'Ayumi Hamasaki');
     
         });
+
+
+        it('Malzeme seçimi yapılmalı', () => {
+            cy.visit('http://localhost:5174/pizza');
+
+            cy.get('[data-cy=ingredient-checkbox]').check(['Pepporini', 'Sosis', 'Kanada Jambonu', 'Tavuk Izgara', 'Soğan', 'Domates', 'Mısır', 'Sucuk', 'Jalepeno', 'Sarımsak']);
+    
+            cy.get('[data-cy=ingredient-checkbox]:checked').should('have.length.at.least', 10);
+        });
+
     });
     

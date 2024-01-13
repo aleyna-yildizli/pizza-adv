@@ -224,6 +224,7 @@ export default function OrderPage (props){
                 value={ingredient}
                 checked={formData?.ingredients?.includes(ingredient)}
                 onChange={handleChange}
+                data-cy="ingredient-checkbox"
               />
               {ingredient}
             </label>
