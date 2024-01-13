@@ -202,6 +202,7 @@ export default function OrderPage (props){
               type="select"
               value={formData.hamurSec}
               onChange={handleChange}
+              data-cy="hamurSec"
             >
               <option disabled value="" selected>-Hamur Kalınlığı Seç-</option>
               <option>Süpper İnce</option>
