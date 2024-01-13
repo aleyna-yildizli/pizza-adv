@@ -33,6 +33,7 @@ export default function OrderPage (props){
    const [sizeError, setSizeError] = useState(false);
    const [hamurError, setHamurError] = useState(false);
    const [ingredientError, setIngredientError] = useState(false);
+   const [nameError, setNameError] = useState(false);
    let history = useHistory();
 
     function handleChange(event) {
@@ -66,7 +67,7 @@ export default function OrderPage (props){
         });
       }
 
-      useEffect(() => {
+      /*useEffect(() => {
         axios.get('https://reqres.in/api/users')
           .then(response => {
             const rastgeleNumara = () => Math.floor(Math.random() * 6);
@@ -79,7 +80,7 @@ export default function OrderPage (props){
           .catch(error => {
             console.error('Error fetching data: ', error);
           });
-      }, []);
+      }, []); */
 
    
 
@@ -109,6 +110,13 @@ export default function OrderPage (props){
           setIngredientError(false);
         } else {
           setIngredientError(true);
+          isError = true;
+        }
+
+        if (formData.name)  {
+          setNameError(false);
+        } else {
+          setNameError(true);
           isError = true;
         }
 
@@ -224,6 +232,7 @@ export default function OrderPage (props){
 
             <FormGroup className='orderMessage-Name'>
             <Label for="name" className='orderMessageTitle'>İsim</Label><br />
+            {nameError && <p className="orderPageErrorMessage">Lütfen İsmini Giriniz!</p>}
             <Input
                id="name-input"
                name="name"
@@ -234,6 +243,7 @@ export default function OrderPage (props){
                onChange={handleChange}
                size={100}
                autocomplete="off"
+               data-cy="name-input"
             />
           </FormGroup>
 
