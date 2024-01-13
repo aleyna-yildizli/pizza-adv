@@ -90,6 +90,7 @@ export default function OrderPage (props){
       const handleSubmitOnClick = () => {
         let isError = false; 
 
+        //formDatamda size varsa hata yok, size yoksa hata var!
         if (formData.size)  {
           setSizeError(false);
         } else {
@@ -112,7 +113,7 @@ export default function OrderPage (props){
         }
 
 
-
+        //hata yoksa post at!
         if (!isError ) {
           postOrderToMockAPI();
         } else {
