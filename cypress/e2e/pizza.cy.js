@@ -3,8 +3,7 @@ import React from 'react';
 
 describe('Pizza Siparişi Testleri', () => {
     beforeEach(() => {
-   
-      cy.visit('http://localhost:5174/pizza')
+    cy.visit('http://localhost:5174/pizza')
     });
 
 
@@ -12,7 +11,6 @@ describe('Pizza Siparişi Testleri', () => {
 
     it('İsme metin girişi yapmalı', () => {
         cy.visit('http://localhost:5174/pizza');
-    
         cy.get('[data-cy=name-input]')
                 .type('Ayumi Hamasaki') 
                 .should('have.value', 'Ayumi Hamasaki');
@@ -20,12 +18,19 @@ describe('Pizza Siparişi Testleri', () => {
         });
 
 
-        it('Malzeme seçimi yapılmalı', () => {
-            cy.visit('http://localhost:5174/pizza');
+    it('Malzeme seçimi yapılmalı', () => {
+        cy.visit('http://localhost:5174/pizza');
+        cy.get('[data-cy=ingredient-checkbox]').check(['Pepporini', 'Sosis', 'Kanada Jambonu', 'Tavuk Izgara', 'Soğan', 'Domates', 'Mısır', 'Sucuk', 'Jalepeno', 'Sarımsak']);
+        cy.get('[data-cy=ingredient-checkbox]:checked').should('have.length.at.least', 10);
+        });
 
-            cy.get('[data-cy=ingredient-checkbox]').check(['Pepporini', 'Sosis', 'Kanada Jambonu', 'Tavuk Izgara', 'Soğan', 'Domates', 'Mısır', 'Sucuk', 'Jalepeno', 'Sarımsak']);
-    
-            cy.get('[data-cy=ingredient-checkbox]:checked').should('have.length.at.least', 10);
+
+
+    it('Pizza boyutu seçilmelidir', () => {
+        cy.visit('http://localhost:5174/pizza');
+        cy.get('[data-cy=kucukBoy]').check().should('be.checked');
+        cy.get('[data-cy=ortaBoy]').check().should('be.checked');
+        cy.get('[data-cy=buyukBoy]').check().should('be.checked');
         });
 
     });

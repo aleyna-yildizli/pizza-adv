@@ -163,6 +163,7 @@ export default function OrderPage (props){
               value={"S"}
               onChange={handleChange}
               checked={formData.size == "S"}
+              data-cy="kucukBoy"
             />
             <Label for="kucukBoy">S</Label>
             </div>
@@ -174,6 +175,7 @@ export default function OrderPage (props){
               value={"M"}
               onChange={handleChange}
               checked={formData.size == "M"}
+              data-cy="ortaBoy"
             />
             <Label for="ortaBoy">M</Label>
             </div>
@@ -185,6 +187,7 @@ export default function OrderPage (props){
               value={"L"}
               onChange={handleChange}
               checked={formData.size == "L"}
+              data-cy="buyukBoy"
             />
             <Label for="buyukBoy">L</Label>
             </div>
