@@ -1,20 +1,15 @@
 import React from 'react';
 <reference types="cypress" />
 
-describe('Pizza Siparişi Testleri', () => {
+describe('Formu Gönderme Testi', () => {
     beforeEach(() => {
     cy.visit('http://localhost:5174/pizza')
     });
-
-
-
-
     it('İsme metin girişi yapmalı', () => {
         cy.visit('http://localhost:5174/pizza');
         cy.get('[data-cy=name-input]')
-                .type('Ayumi Hamasaki') 
-                .should('have.value', 'Ayumi Hamasaki');
-    
+            .type('Ayumi Hamasaki') 
+            .should('have.value', 'Ayumi Hamasaki');
         });
 
 
@@ -24,15 +19,12 @@ describe('Pizza Siparişi Testleri', () => {
         cy.get('[data-cy=ingredient-checkbox]:checked').should('have.length.at.least', 10);
         });
 
-
-
     it('Pizza boyutu seçilmelidir', () => {
         cy.visit('http://localhost:5174/pizza');
         cy.get('[data-cy=kucukBoy]').check().should('be.checked');
         cy.get('[data-cy=ortaBoy]').check().should('be.checked');
         cy.get('[data-cy=buyukBoy]').check().should('be.checked');
         });
-
 
     it('Bir hamur seçilmelidir', () => {
         cy.visit('http://localhost:5174/pizza');
@@ -41,10 +33,21 @@ describe('Pizza Siparişi Testleri', () => {
         cy.get('[data-cy=hamurSec]').select('Normal').should('have.value', 'Normal');
         cy.get('[data-cy=hamurSec]').select('Kalın Kenar').should('have.value', 'Kalın Kenar');
     });
-        
-         
+
+    it('Butona tıklanmalı ve yönlendirme beklenmeli', () => {
+        cy.get('[data-cy=order-button]').click();
+        cy.url().should('include', 'http://localhost:5174/result');
+    });
+    
+    it('Sipariş alındı mı testi', () => {
+        cy.url().should('include', '/result');
+        cy.get('.resultPageMainDivTitle').should('contain', 'SİPARİŞ ALINDI');
+    });
+    
+    
 });
-        
+
+
 
 
 

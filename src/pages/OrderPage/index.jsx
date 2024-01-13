@@ -280,7 +280,7 @@ export default function OrderPage (props){
             </div>
             <div className="orderSummary">
               <Calculation formData={formData} count={count}></Calculation>
-              <Button id="order-button" className='orderPageSubmitButton' onClick={handleSubmitOnClick} color={"warning"}>SİPARİŞ VER</Button>
+              <Button data-cy="order-button" id="order-button" className='orderPageSubmitButton' onClick={handleSubmitOnClick} color={"warning"}>SİPARİŞ VER</Button>
             </div>
           </div>
             </Form>
