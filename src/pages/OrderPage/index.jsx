@@ -67,21 +67,6 @@ export default function OrderPage (props){
         });
       }
 
-      /*useEffect(() => {
-        axios.get('https://reqres.in/api/users')
-          .then(response => {
-            const rastgeleNumara = () => Math.floor(Math.random() * 6);
-            const index = rastgeleNumara();
-            const firstUserName = response.data.data[index].first_name ?? "Aleyna";
-
-            const data = { ...formData, name: firstUserName };
-            formDataOnChange?.(data);
-          })
-          .catch(error => {
-            console.error('Error fetching data: ', error);
-          });
-      }, []); */
-
    
 
       const handleCountChange = (value) =>  {
