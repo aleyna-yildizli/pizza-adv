@@ -4,6 +4,7 @@ import "./style.css";
 import { Card, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import axios from 'axios';
 import  Calculation from '../../components/Calculation';
+import { usePizzaForm } from '../../context';
 
 const ingredientOptions = [
     'Pepporini',
@@ -22,14 +23,8 @@ const ingredientOptions = [
     'Kabak',
   ];
 
-  const sizeOptions = {
-    S: "S",
-    M: "M",
-    L: "L"
-  }
-
-export default function OrderPage (props){
-   const {formDataOnChange, formData, count, countOnChange } = props;
+export default function OrderPage () {
+   const {formData, setFormData, count, setCount } = usePizzaForm();
    const [sizeError, setSizeError] = useState(false);
    const [hamurError, setHamurError] = useState(false);
    const [ingredientError, setIngredientError] = useState(false);
@@ -51,7 +46,7 @@ export default function OrderPage (props){
         }
       
         const data = { ...formData, [name]: value, ingredients };
-        formDataOnChange(data);
+        setFormData(data);
       }
      
 
@@ -70,7 +65,7 @@ export default function OrderPage (props){
    
 
       const handleCountChange = (value) =>  {
-        countOnChange(value);
+        setCount(value); 
       }
    
       const handleSubmitOnClick = () => {

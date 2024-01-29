@@ -6,37 +6,19 @@ import ResultPage from './pages/ResultPage';
 import Layout from './Layout';
 
 
-const initialForm = {
-  size: "",
-  hamur: "",
-  ingredients: [],
-  message: "",
-  name: ""
- }
 
-function App() {
- const [formData, setFormData] = useState(initialForm);
- const [count, setCount] = useState(1);
-
- const formDataOnChange = (newData) => {
-  setFormData(newData);
- }
-
- const countOnChange = (value) => {
-  setCount(value);
- }
-
+function App() {    
 
   return (
     <Layout>
       <Switch>
         <Route path="/pizza">
-          <OrderPage formDataOnChange={formDataOnChange} formData={formData} countOnChange={countOnChange} count={count} />
+          <OrderPage />
         </Route>
         <Route path="/result">
-          <ResultPage formData={formData} count={count} />
+          <ResultPage />
         </Route>
-        <Route path="/" component={HomePage}  />
+        <Route path="/" component={HomePage} />
       </Switch>
     </Layout>
   )
