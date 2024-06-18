@@ -1,5 +1,5 @@
 import { createContext, useState, useContext } from "react";
-
+const FormContext = createContext();
 
 const initialForm = {
     size: "",
@@ -9,7 +9,7 @@ const initialForm = {
     name: ""
    }
 
-const FormContext = createContext();
+
 
 export const FormProvider = ({ children }) => {
     const [formData, setFormData] = useState(initialForm);

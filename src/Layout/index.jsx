@@ -1,5 +1,6 @@
-import React from 'react';
-import Header from '../components/Header';
+import React from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Layout = (props) => {
   const { children } = props;
@@ -7,9 +8,8 @@ const Layout = (props) => {
   return (
     <div>
       <Header />
-      <div>
-        {children}
-      </div>
+      <div>{children}</div>
+      <Footer />
     </div>
   );
 };

@@ -1,14 +1,11 @@
-import React, { useState } from 'react'
-import { Switch, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage'; 
-import OrderPage from './pages/OrderPage'; 
-import ResultPage from './pages/ResultPage'; 
-import Layout from './Layout';
+import React, { useState } from "react";
+import { Switch, Route } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import OrderPage from "./pages/OrderPage";
+import ResultPage from "./pages/ResultPage";
+import Layout from "./Layout";
 
-
-
-function App() {    
-
+function App() {
   return (
     <Layout>
       <Switch>
@@ -21,7 +18,7 @@ function App() {
         <Route path="/" component={HomePage} />
       </Switch>
     </Layout>
-  )
+  );
 }
 
-export default App
+export default App;

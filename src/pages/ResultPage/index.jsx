@@ -3,7 +3,7 @@ import "./style.css";
 import Calculation from '../../components/Calculation';
 import { usePizzaForm } from '../../context';
 
-export default function ResultPage (){
+export default function ResultPage () {
     const { formData, count } = usePizzaForm();
     const ingredients = formData.ingredients.join(', ');
 

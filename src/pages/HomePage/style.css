@@ -1,32 +1,9 @@
-.bgMainDiv {
-    width: 100vw;
-    height: calc(100vh - 207px);
-    background-image: url("../../images/homepage-background.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    margin-top: 207px;
-  }
-
- .homePageBody {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-  }
-
-  .homePageBodyDescription {
-    width: 693.12px;
-    height: 195px;
-    top: 35px;
-    left: -53.22px;
-    font-size: 86px;
-    font-weight: 300;
-    line-height: 92px;
-    letter-spacing: 1.5px;
+.homePageMainDivTitle {
+    margin: 0 0 0px 0;
+    font-family: Satisfy;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 44px;
+    letter-spacing: 0em;
     text-align: center;
-    color: #fff;
-    margin-top: 0;
-    margin-bottom: 10px;;
-  }
+}
